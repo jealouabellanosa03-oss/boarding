@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+    <title>Payment Details - BoardingPay</title>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: #ffffff;
+            color: #173b63;
+        }
+
+        .page {
+            max-width: 430px;
+
+            min-height: 100vh;
+
+            margin: auto;
+
+            background: #ffffff;
+
+            padding-bottom: 80px;
+        }
+
+
+        /* HEADER */
+
+        .header {
+            height: 58px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            position: relative;
+
+            border-bottom:
+                1px solid #edf1f4;
+        }
+
+        .header h1 {
+            font-size: 15px;
+        }
+
+
+        /* BACK */
+
+        .back-btn {
+            position: absolute;
+
+            left: 12px;
+
+            width: 35px;
+            height: 35px;
+
+            border: none;
+
+            background: transparent;
+
+            color: #657786;
+
+            font-size: 28px;
+
+            cursor: pointer;
+        }
+
+
+        /* CONTENT */
+
+        .details {
+            padding: 14px;
+        }
+
+
+        .room-box {
+            background: #f1f8fc;
+
+            border-radius: 4px;
+
+            padding: 13px;
+
+            margin-bottom: 18px;
+
+            font-size: 12px;
+
+            font-weight: bold;
+        }
+
+
+        .payment-info {
+            padding: 0 8px;
+        }
+
+
+        .info-row {
+            display: flex;
+
+            justify-content:
+                space-between;
+
+            padding: 12px 0;
+
+            border-bottom:
+                1px solid #edf1f4;
+
+            font-size: 12px;
+        }
+
+
+        .info-row span {
+            color: #36556f;
+        }
+
+
+        .info-row strong {
+            color: #173b63;
+        }
+
+
+        /* METHOD */
+
+        .selected-method {
+
+            margin-top: 16px;
+
+            background: #f1f8fc;
+
+            padding: 13px;
+
+            border-radius: 5px;
+
+            font-size: 12px;
+        }
+
+
+        .selected-method strong {
+            color: #078bd0;
+        }
+
+
+        /* PROCEED */
+
+        .proceed-btn {
+
+            position: fixed;
+
+            left: 50%;
+
+            bottom: 12px;
+
+            transform:
+                translateX(-50%);
+
+            width:
+                min(414px, calc(100% - 16px));
+
+            height: 48px;
+
+            border: none;
+
+            border-radius: 6px;
+
+            background: #168bd4;
+
+            color: white;
+
+            font-size: 14px;
+
+            font-weight: bold;
+
+            cursor: pointer;
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<main class="page">
+
+
+    <!-- HEADER -->
+
+    <header class="header">
+
+        <button
+            type="button"
+            class="back-btn"
+            id="backBtn">
+
+            ‹
+
+        </button>
+
+        <h1>
+            Payment Details
+        </h1>
+
+    </header>
+
+
+    <!-- PAYMENT DETAILS -->
+
+    <section class="details">
+
+
+        <div class="room-box">
+
+            Room 101
+
+        </div>
+
+
+        <div class="payment-info">
+
+
+            <div class="info-row">
+
+                <span>
+                    Monthly Rent
+                </span>
+
+                <strong>
+                    ₱ 2,500.00
+                </strong>
+
+            </div>
+
+
+            <div class="info-row">
+
+                <span>
+                    Due Date
+                </span>
+
+                <strong>
+                    October 1, 2026
+                </strong>
+
+            </div>
+
+
+        </div>
+
+
+        <div class="selected-method">
+
+            Payment Method:
+
+            <strong id="selectedMethod">
+                —
+            </strong>
+
+        </div>
+
+
+    </section>
+
+
+</main>
+
+
+<!-- PROCEED -->
+
+<button
+    type="button"
+    class="proceed-btn"
+    id="proceedBtn">
+
+    Proceed to Pay
+
+</button>
+
+
+<script>
+
+document.addEventListener(
+    "DOMContentLoaded",
+    function () {
+
+
+        /* =========================
+           GET METHOD
+        ========================= */
+
+        const method =
+            localStorage.getItem(
+                "selectedPaymentMethod"
+            ) || "GCash";
+
+
+        document
+            .getElementById(
+                "selectedMethod"
+            )
+            .textContent =
+            method;
+
+
+        /* =========================
+           BACK TO PAYMENT METHOD
+        ========================= */
+
+        document
+            .getElementById("backBtn")
+            .addEventListener(
+                "click",
+                function () {
+
+                    window.location.href =
+                        "paymentmethod.html";
+
+                }
+            );
+
+
+        /* =========================
+           PROCEED TO PAY
+        ========================= */
+
+        document
+            .getElementById("proceedBtn")
+            .addEventListener(
+                "click",
+                function () {
+
+
+                    const transaction = {
+
+                        id:
+                            "BP-" +
+                            Date.now(),
+
+                        method:
+                            method,
+
+                        room:
+                            "Room 101",
+
+                        description:
+                            "Monthly Rent",
+
+                        amount:
+                            2500,
+
+                        dueDate:
+                            "October 1, 2026",
+
+                        date:
+                            new Date()
+                                .toLocaleDateString(
+                                    "en-US",
+                                    {
+                                        year:
+                                            "numeric",
+
+                                        month:
+                                            "long",
+
+                                        day:
+                                            "numeric"
+                                    }
+                                ),
+
+                        status:
+                            "Paid"
+
+                    };
+
+
+                    /* GET HISTORY */
+
+                    const history =
+                        JSON.parse(
+                            localStorage.getItem(
+                                "paymentHistory"
+                            ) || "[]"
+                        );
+
+
+                    /* SAVE */
+
+                    history.unshift(
+                        transaction
+                    );
+
+
+                    localStorage.setItem(
+                        "paymentHistory",
+                        JSON.stringify(history)
+                    );
+
+
+                    localStorage.setItem(
+                        "latestPayment",
+                        JSON.stringify(transaction)
+                    );
+
+
+                    /* SUCCESS PAGE */
+
+                    window.location.href =
+                        "payment-success.html";
+
+                }
+            );
+
+    }
+);
+
+</script>
+
+
+</body>
+
+</html>

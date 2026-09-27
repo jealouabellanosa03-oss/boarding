@@ -1,0 +1,1029 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+    <title>Profile - BoardingPay</title>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: #f7fbfe;
+            color: #173b63;
+        }
+
+        .page {
+            width: 100%;
+            max-width: 430px;
+            min-height: 100vh;
+            margin: auto;
+            background: #ffffff;
+            padding-bottom: 90px;
+        }
+
+
+        /* =========================
+           HEADER
+        ========================= */
+
+        .header {
+            height: 58px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            position: relative;
+
+            background: #ffffff;
+
+            border-bottom: 1px solid #edf1f4;
+        }
+
+        .header h1 {
+            font-size: 15px;
+            font-weight: 700;
+            color: #173b63;
+        }
+
+
+        /* =========================
+           BACK BUTTON
+        ========================= */
+
+        .back-btn {
+            position: absolute;
+
+            left: 10px;
+            top: 10px;
+
+            width: 38px;
+            height: 38px;
+
+            border: none;
+            border-radius: 50%;
+
+            background: transparent;
+
+            color: #657786;
+
+            font-size: 30px;
+            line-height: 1;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            cursor: pointer;
+        }
+
+        .back-btn:hover {
+            background: #f1f8fc;
+        }
+
+        .back-btn:active {
+            background: #e4f3fc;
+        }
+
+
+        /* =========================
+           PROFILE TOP
+        ========================= */
+
+        .profile-top {
+            text-align: center;
+
+            padding: 28px 20px 22px;
+
+            border-bottom: 1px solid #edf1f4;
+        }
+
+        .profile-avatar {
+            width: 76px;
+            height: 76px;
+
+            margin: 0 auto 12px;
+
+            border-radius: 50%;
+
+            background: #168bd4;
+
+            color: #ffffff;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            font-size: 26px;
+            font-weight: bold;
+        }
+
+        .profile-top h2 {
+            font-size: 18px;
+
+            color: #173b63;
+
+            margin-bottom: 5px;
+        }
+
+        .profile-top p {
+            font-size: 12px;
+
+            color: #657786;
+        }
+
+
+        /* =========================
+           ACCOUNT BADGE
+        ========================= */
+
+        .account-badge {
+            display: inline-block;
+
+            margin-top: 10px;
+
+            padding: 5px 12px;
+
+            border-radius: 20px;
+
+            background: #eaf6fd;
+
+            color: #168bd4;
+
+            font-size: 11px;
+
+            font-weight: bold;
+        }
+
+
+        /* =========================
+           PROFILE CONTENT
+        ========================= */
+
+        .profile-content {
+            padding: 18px 14px;
+        }
+
+        .section-title {
+            font-size: 13px;
+
+            font-weight: bold;
+
+            color: #173b63;
+
+            margin-bottom: 10px;
+        }
+
+
+        /* =========================
+           CREDENTIAL CARD
+        ========================= */
+
+        .credential-card {
+            background: #ffffff;
+
+            border: 1px solid #edf1f4;
+
+            border-radius: 8px;
+
+            overflow: hidden;
+
+            box-shadow:
+                0 2px 8px rgba(
+                    23,
+                    59,
+                    99,
+                    0.04
+                );
+        }
+
+
+        .credential-row {
+            min-height: 58px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            padding: 11px 14px;
+
+            border-bottom:
+                1px solid #edf1f4;
+        }
+
+
+        .credential-row:last-child {
+            border-bottom: none;
+        }
+
+
+        .credential-label {
+            width: 42%;
+
+            font-size: 11px;
+
+            color: #657786;
+        }
+
+
+        .credential-value {
+            width: 58%;
+
+            text-align: right;
+
+            font-size: 12px;
+
+            font-weight: 600;
+
+            color: #173b63;
+
+            word-break: break-word;
+        }
+
+
+        /* =========================
+           LOGOUT
+        ========================= */
+
+        .logout-btn {
+            width: 100%;
+
+            height: 45px;
+
+            margin-top: 20px;
+
+            border:
+                1px solid #e2e8ed;
+
+            border-radius: 6px;
+
+            background: #ffffff;
+
+            color: #d9534f;
+
+            font-size: 13px;
+
+            font-weight: bold;
+
+            cursor: pointer;
+        }
+
+        .logout-btn:hover {
+            background: #fff6f6;
+        }
+
+
+        /* =========================
+           BOTTOM NAVIGATION
+        ========================= */
+
+        .bottom-nav {
+            position: fixed;
+
+            left: 50%;
+            bottom: 0;
+
+            transform:
+                translateX(-50%);
+
+            width:
+                min(430px, 100%);
+
+            height: 68px;
+
+            background: #ffffff;
+
+            border-top:
+                1px solid #e6edf2;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-around;
+
+            z-index: 1000;
+        }
+
+
+        .nav-item {
+            width: 25%;
+
+            height: 100%;
+
+            display: flex;
+
+            flex-direction: column;
+
+            align-items: center;
+
+            justify-content: center;
+
+            text-decoration: none;
+
+            color: #8a9aaa;
+
+            font-size: 10px;
+
+            cursor: pointer;
+        }
+
+
+        .nav-icon {
+            font-size: 20px;
+
+            line-height: 22px;
+
+            margin-bottom: 4px;
+        }
+
+
+        .nav-item.active {
+            color: #168bd4;
+
+            font-weight: bold;
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<main class="page">
+
+
+    <!-- =========================
+         HEADER
+    ========================= -->
+
+    <header class="header">
+
+        <button
+            type="button"
+            class="back-btn"
+            id="backBtn"
+            aria-label="Back to Dashboard">
+
+            ‹
+
+        </button>
+
+
+        <h1>
+            Profile
+        </h1>
+
+    </header>
+
+
+    <!-- =========================
+         PROFILE HEADER
+    ========================= -->
+
+    <section class="profile-top">
+
+        <div
+            class="profile-avatar"
+            id="profileAvatar">
+
+            U
+
+        </div>
+
+
+        <h2 id="displayName">
+            User
+        </h2>
+
+
+        <p id="displayEmail">
+            —
+        </p>
+
+
+        <span
+            class="account-badge"
+            id="accountType">
+
+            Tenant
+
+        </span>
+
+    </section>
+
+
+    <!-- =========================
+         PROFILE INFORMATION
+    ========================= -->
+
+    <section class="profile-content">
+
+
+        <h3 class="section-title">
+            Account Information
+        </h3>
+
+
+        <div class="credential-card">
+
+
+            <!-- FULL NAME -->
+
+            <div class="credential-row">
+
+                <span class="credential-label">
+                    Full Name
+                </span>
+
+
+                <span
+                    class="credential-value"
+                    id="fullName">
+
+                    —
+
+                </span>
+
+            </div>
+
+
+            <!-- EMAIL -->
+
+            <div class="credential-row">
+
+                <span class="credential-label">
+                    Email
+                </span>
+
+
+                <span
+                    class="credential-value"
+                    id="email">
+
+                    —
+
+                </span>
+
+            </div>
+
+
+            <!-- PHONE -->
+
+            <div class="credential-row">
+
+                <span class="credential-label">
+                    Phone Number
+                </span>
+
+
+                <span
+                    class="credential-value"
+                    id="phone">
+
+                    —
+
+                </span>
+
+            </div>
+
+
+            <!-- ADDRESS -->
+
+            <div class="credential-row">
+
+                <span class="credential-label">
+                    Address
+                </span>
+
+
+                <span
+                    class="credential-value"
+                    id="address">
+
+                    —
+
+                </span>
+
+            </div>
+
+
+            <!-- ROOM -->
+
+            <div class="credential-row">
+
+                <span class="credential-label">
+                    Room / House
+                </span>
+
+
+                <span
+                    class="credential-value"
+                    id="roomHouse">
+
+                    —
+
+                </span>
+
+            </div>
+
+
+            <!-- ACCOUNT TYPE -->
+
+            <div class="credential-row">
+
+                <span class="credential-label">
+                    Account Type
+                </span>
+
+
+                <span
+                    class="credential-value"
+                    id="accountTypeValue">
+
+                    —
+
+                </span>
+
+            </div>
+
+
+        </div>
+
+
+        <!-- LOGOUT -->
+
+        <button
+            type="button"
+            class="logout-btn"
+            id="logoutBtn">
+
+            Log Out
+
+        </button>
+
+    </section>
+
+</main>
+
+
+<!-- =========================
+     BOTTOM NAVIGATION
+========================= -->
+
+<nav class="bottom-nav">
+
+
+    <!-- HOME -->
+
+    <a
+        href="tenant-dashboard.html"
+        class="nav-item">
+
+        <span class="nav-icon">
+            ⌂
+        </span>
+
+        <span>
+            Home
+        </span>
+
+    </a>
+
+
+    <!-- PAYMENT -->
+
+    <a
+        href="payment-method.html"
+        class="nav-item">
+
+        <span class="nav-icon">
+            ₱
+        </span>
+
+        <span>
+            Payment
+        </span>
+
+    </a>
+
+
+    <!-- HISTORY -->
+
+    <a
+        href="history.html"
+        class="nav-item">
+
+        <span class="nav-icon">
+            ◷
+        </span>
+
+        <span>
+            History
+        </span>
+
+    </a>
+
+
+    <!-- PROFILE -->
+
+    <a
+        href="profile.html"
+        class="nav-item active">
+
+        <span class="nav-icon">
+            ♙
+        </span>
+
+        <span>
+            Profile
+        </span>
+
+    </a>
+
+</nav>
+
+
+<script>
+
+document.addEventListener(
+    "DOMContentLoaded",
+    function () {
+
+
+        /* =====================================================
+           GET CURRENT USER TYPE
+        ===================================================== */
+
+        const userType =
+            localStorage.getItem(
+                "currentUserType"
+            ) || "tenant";
+
+
+        /* =====================================================
+           VARIABLES
+        ===================================================== */
+
+        let registeredName = "";
+        let registeredEmail = "";
+        let registeredPhone = "";
+
+
+        /* =====================================================
+           GET REGISTERED ACCOUNT
+        ===================================================== */
+
+        if (userType === "tenant") {
+
+            registeredName =
+                localStorage.getItem(
+                    "tenantName"
+                ) || "";
+
+            registeredEmail =
+                localStorage.getItem(
+                    "tenantEmail"
+                ) || "";
+
+            registeredPhone =
+                localStorage.getItem(
+                    "tenantPhone"
+                ) || "";
+
+        }
+
+
+        else if (userType === "landlord") {
+
+            registeredName =
+                localStorage.getItem(
+                    "landlordName"
+                ) || "";
+
+            registeredEmail =
+                localStorage.getItem(
+                    "landlordEmail"
+                ) || "";
+
+            registeredPhone =
+                localStorage.getItem(
+                    "landlordPhone"
+                ) || "";
+
+        }
+
+
+        else if (userType === "admin") {
+
+            registeredName =
+                localStorage.getItem(
+                    "adminName"
+                ) || "";
+
+            registeredEmail =
+                localStorage.getItem(
+                    "adminEmail"
+                ) || "";
+
+            registeredPhone =
+                localStorage.getItem(
+                    "adminPhone"
+                ) || "";
+
+        }
+
+
+        /* =====================================================
+           COMPLETE PROFILE
+        ===================================================== */
+
+        const profileFullName =
+            localStorage.getItem(
+                "profileFullName"
+            ) || "";
+
+
+        const profileAddress =
+            localStorage.getItem(
+                "profileAddress"
+            ) || "";
+
+
+        const profileRoomHouse =
+            localStorage.getItem(
+                "profileRoomHouse"
+            ) || "";
+
+
+        /* =====================================================
+           FINAL USER DATA
+        ===================================================== */
+
+        const fullName =
+            profileFullName ||
+            registeredName ||
+            "User";
+
+
+        const email =
+            registeredEmail ||
+            "—";
+
+
+        const phone =
+            registeredPhone ||
+            "—";
+
+
+        const address =
+            profileAddress ||
+            "—";
+
+
+        const roomHouse =
+            profileRoomHouse ||
+            "—";
+
+
+        /* =====================================================
+           DISPLAY USER INFORMATION
+        ===================================================== */
+
+        document.getElementById(
+            "displayName"
+        ).textContent =
+            fullName;
+
+
+        document.getElementById(
+            "displayEmail"
+        ).textContent =
+            email;
+
+
+        document.getElementById(
+            "fullName"
+        ).textContent =
+            fullName;
+
+
+        document.getElementById(
+            "email"
+        ).textContent =
+            email;
+
+
+        document.getElementById(
+            "phone"
+        ).textContent =
+            phone;
+
+
+        document.getElementById(
+            "address"
+        ).textContent =
+            address;
+
+
+        document.getElementById(
+            "roomHouse"
+        ).textContent =
+            roomHouse;
+
+
+        /* =====================================================
+           ACCOUNT TYPE
+        ===================================================== */
+
+        let accountLabel =
+            "Tenant";
+
+
+        if (userType === "landlord") {
+
+            accountLabel =
+                "Landlord";
+
+        }
+
+
+        else if (userType === "admin") {
+
+            accountLabel =
+                "Administrator";
+
+        }
+
+
+        document.getElementById(
+            "accountType"
+        ).textContent =
+            accountLabel;
+
+
+        document.getElementById(
+            "accountTypeValue"
+        ).textContent =
+            accountLabel;
+
+
+        /* =====================================================
+           PROFILE INITIALS
+        ===================================================== */
+
+        const avatar =
+            document.getElementById(
+                "profileAvatar"
+            );
+
+
+        if (
+            fullName &&
+            fullName !== "User"
+        ) {
+
+            const nameParts =
+                fullName
+                    .trim()
+                    .split(/\s+/);
+
+
+            let initials = "";
+
+
+            if (
+                nameParts.length >= 2
+            ) {
+
+                initials =
+                    nameParts[0]
+                        .charAt(0) +
+
+                    nameParts[
+                        nameParts.length - 1
+                    ]
+                        .charAt(0);
+
+            }
+
+            else {
+
+                initials =
+                    nameParts[0]
+                        .charAt(0);
+
+            }
+
+
+            avatar.textContent =
+                initials.toUpperCase();
+
+        }
+
+
+        /* =====================================================
+           BACK TO DASHBOARD
+        ===================================================== */
+
+        const backBtn =
+            document.getElementById(
+                "backBtn"
+            );
+
+
+        if (backBtn) {
+
+            backBtn.addEventListener(
+                "click",
+                function () {
+
+                    window.location.href =
+                        "tenant-dashboard.html";
+
+                }
+            );
+
+        }
+
+
+        /* =====================================================
+           LOGOUT
+        ===================================================== */
+
+        const logoutBtn =
+            document.getElementById(
+                "logoutBtn"
+            );
+
+
+        if (logoutBtn) {
+
+            logoutBtn.addEventListener(
+                "click",
+                function () {
+
+
+                    /*
+                     * Remove only the
+                     * current login state.
+                     *
+                     * Registered credentials
+                     * and payment history
+                     * remain saved.
+                     */
+
+                    localStorage.removeItem(
+                        "currentUserType"
+                    );
+
+
+                    localStorage.removeItem(
+                        "emailVerified"
+                    );
+
+
+                    localStorage.removeItem(
+                        "profileCompleted"
+                    );
+
+
+                    localStorage.removeItem(
+                        "selectedPaymentMethod"
+                    );
+
+
+                    window.location.href =
+                        "index.html";
+
+                }
+            );
+
+        }
+
+    }
+);
+
+</script>
+
+
+</body>
+
+</html>

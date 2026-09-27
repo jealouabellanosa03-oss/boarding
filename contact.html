@@ -1,0 +1,1108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+>
+
+<title>Contact Us - JNJC Boarding House Pay</title>
+
+
+<style>
+
+/* =====================================================
+   RESET
+===================================================== */
+
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+}
+
+
+/* =====================================================
+   BODY
+===================================================== */
+
+body{
+
+    min-height:100vh;
+
+    background:#eef8fd;
+
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+
+    color:#173b63;
+
+    overflow-x:hidden;
+
+}
+
+
+/* =====================================================
+   MAIN APP
+===================================================== */
+
+.contact-app{
+
+    width:100%;
+
+    max-width:500px;
+
+    min-height:100vh;
+
+    margin:auto;
+
+    background:#f8fcff;
+
+    box-shadow:
+        0 0 30px
+        rgba(0,80,130,.08);
+
+}
+
+
+/* =====================================================
+   HEADER
+===================================================== */
+
+.contact-header{
+
+    height:78px;
+
+    background:#fff;
+
+    border-bottom:
+        1px solid #dceaf2;
+
+    display:flex;
+
+    align-items:center;
+
+    padding:
+        0 16px;
+
+    gap:12px;
+
+    position:sticky;
+
+    top:0;
+
+    z-index:20;
+
+}
+
+
+.back-btn{
+
+    width:38px;
+
+    height:38px;
+
+    border:
+        1px solid #d7e8f2;
+
+    border-radius:50%;
+
+    background:#fff;
+
+    color:#07559b;
+
+    font-size:27px;
+
+    line-height:30px;
+
+    cursor:pointer;
+
+    flex-shrink:0;
+
+}
+
+
+.back-btn:active{
+
+    transform:scale(.96);
+
+}
+
+
+.header-text{
+
+    flex:1;
+
+}
+
+
+.header-text h1{
+
+    color:#07559b;
+
+    font-size:19px;
+
+    font-weight:800;
+
+}
+
+
+.header-text p{
+
+    color:#7893a5;
+
+    font-size:10px;
+
+    margin-top:3px;
+
+}
+
+
+/* =====================================================
+   CONTENT
+===================================================== */
+
+.contact-content{
+
+    padding:
+        20px
+        14px
+        35px;
+
+}
+
+
+/* =====================================================
+   ILLUSTRATION
+===================================================== */
+
+.contact-illustration{
+
+    width:100%;
+
+    height:180px;
+
+    border-radius:20px;
+
+    background:
+        linear-gradient(
+            180deg,
+            #f7fcff 0%,
+            #e7f6ff 100%
+        );
+
+    border:
+        1px solid #d8edf8;
+
+    position:relative;
+
+    overflow:hidden;
+
+    margin-bottom:20px;
+
+}
+
+
+/* SKY */
+
+.sky-circle{
+
+    position:absolute;
+
+    border-radius:50%;
+
+    background:#dff2fc;
+
+}
+
+
+.sky-circle.one{
+
+    width:55px;
+
+    height:55px;
+
+    top:24px;
+
+    left:25px;
+
+}
+
+
+.sky-circle.two{
+
+    width:38px;
+
+    height:38px;
+
+    top:52px;
+
+    left:65px;
+
+    background:#d2ecfa;
+
+}
+
+
+.sky-circle.three{
+
+    width:50px;
+
+    height:50px;
+
+    top:30px;
+
+    right:38px;
+
+    background:#d9effb;
+
+}
+
+
+/* CITY */
+
+.city{
+
+    position:absolute;
+
+    bottom:42px;
+
+    right:25px;
+
+    display:flex;
+
+    align-items:flex-end;
+
+    gap:5px;
+
+}
+
+
+.building{
+
+    background:#bde1f4;
+
+    border-radius:
+        3px
+        3px
+        0
+        0;
+
+}
+
+
+.building.one{
+
+    width:20px;
+
+    height:45px;
+
+}
+
+
+.building.two{
+
+    width:25px;
+
+    height:68px;
+
+}
+
+
+.building.three{
+
+    width:18px;
+
+    height:53px;
+
+}
+
+
+.building.four{
+
+    width:27px;
+
+    height:78px;
+
+}
+
+
+/* GROUND */
+
+.ground{
+
+    position:absolute;
+
+    bottom:0;
+
+    left:0;
+
+    width:100%;
+
+    height:52px;
+
+    background:#a9dcf3;
+
+    clip-path:
+        polygon(
+            0 48%,
+            18% 25%,
+            31% 48%,
+            48% 15%,
+            62% 45%,
+            78% 22%,
+            100% 50%,
+            100% 100%,
+            0 100%
+        );
+
+}
+
+
+/* HOUSE */
+
+.house{
+
+    position:absolute;
+
+    left:28px;
+
+    bottom:38px;
+
+    width:112px;
+
+    height:78px;
+
+    background:#fff;
+
+    border:
+        3px solid #5aa9dc;
+
+    border-top:0;
+
+    border-radius:
+        0
+        0
+        5px
+        5px;
+
+}
+
+
+/* HOUSE ROOF */
+
+.house-roof{
+
+    position:absolute;
+
+    width:82px;
+
+    height:82px;
+
+    left:12px;
+
+    top:-41px;
+
+    background:#fff;
+
+    border-left:
+        6px solid #5aa9dc;
+
+    border-top:
+        6px solid #5aa9dc;
+
+    transform:
+        rotate(45deg);
+
+}
+
+
+/* WINDOW */
+
+.house-window{
+
+    position:absolute;
+
+    width:26px;
+
+    height:26px;
+
+    left:16px;
+
+    top:23px;
+
+    background:#bfe7fa;
+
+    border:
+        3px solid #4f9ed3;
+
+    z-index:2;
+
+}
+
+
+.house-window:before{
+
+    content:"";
+
+    position:absolute;
+
+    left:8px;
+
+    top:0;
+
+    height:100%;
+
+    width:3px;
+
+    background:#4f9ed3;
+
+}
+
+
+.house-window:after{
+
+    content:"";
+
+    position:absolute;
+
+    left:0;
+
+    top:9px;
+
+    width:100%;
+
+    height:3px;
+
+    background:#4f9ed3;
+
+}
+
+
+/* DOOR */
+
+.house-door{
+
+    position:absolute;
+
+    width:24px;
+
+    height:41px;
+
+    right:17px;
+
+    bottom:0;
+
+    background:#75b9e4;
+
+    border-radius:
+        4px
+        4px
+        0
+        0;
+
+    z-index:2;
+
+}
+
+
+/* =====================================================
+   CONTACT TITLE
+===================================================== */
+
+.contact-title{
+
+    text-align:center;
+
+    color:#07559b;
+
+    font-size:20px;
+
+    font-weight:800;
+
+}
+
+
+.contact-subtitle{
+
+    text-align:center;
+
+    color:#7893a5;
+
+    font-size:10px;
+
+    margin-top:5px;
+
+    margin-bottom:20px;
+
+}
+
+
+/* =====================================================
+   CONTACT CARD
+===================================================== */
+
+.contact-card{
+
+    background:#fff;
+
+    border:
+        1px solid #dceaf2;
+
+    border-radius:15px;
+
+    overflow:hidden;
+
+    box-shadow:
+        0 3px 12px
+        rgba(0,65,100,.05);
+
+}
+
+
+/* =====================================================
+   CONTACT ITEM
+===================================================== */
+
+.contact-item{
+
+    width:100%;
+
+    min-height:78px;
+
+    padding:
+        13px
+        14px;
+
+    border:0;
+
+    border-bottom:
+        1px solid #edf3f6;
+
+    background:#fff;
+
+    display:flex;
+
+    align-items:center;
+
+    gap:13px;
+
+    text-align:left;
+
+    text-decoration:none;
+
+    cursor:pointer;
+
+}
+
+
+.contact-item:last-child{
+
+    border-bottom:0;
+
+}
+
+
+.contact-item:active{
+
+    background:#f4fbff;
+
+    transform:scale(.99);
+
+}
+
+
+/* =====================================================
+   ICON
+===================================================== */
+
+.contact-icon{
+
+    width:46px;
+
+    height:46px;
+
+    border-radius:13px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    font-size:22px;
+
+    flex-shrink:0;
+
+}
+
+
+.contact-icon.facebook{
+
+    background:#e7f0ff;
+
+    color:#1877f2;
+
+}
+
+
+.contact-icon.gmail{
+
+    background:#fff0ef;
+
+    color:#ea4335;
+
+}
+
+
+.contact-icon.instagram{
+
+    background:#f8eaff;
+
+    color:#c13584;
+
+}
+
+
+/* =====================================================
+   CONTACT INFO
+===================================================== */
+
+.contact-info{
+
+    flex:1;
+
+    min-width:0;
+
+}
+
+
+.contact-info strong{
+
+    display:block;
+
+    color:#183e70;
+
+    font-size:12px;
+
+}
+
+
+.contact-info span{
+
+    display:block;
+
+    color:#8a9baa;
+
+    font-size:9px;
+
+    margin-top:4px;
+
+    line-height:1.4;
+
+}
+
+
+.contact-arrow{
+
+    color:#91a6b5;
+
+    font-size:20px;
+
+}
+
+
+/* =====================================================
+   NOTE
+===================================================== */
+
+.contact-note{
+
+    margin-top:18px;
+
+    padding:13px;
+
+    background:#f4faff;
+
+    border:
+        1px solid #e0eef5;
+
+    border-radius:10px;
+
+    text-align:center;
+
+}
+
+
+.contact-note p{
+
+    color:#7893a5;
+
+    font-size:9px;
+
+    line-height:1.6;
+
+}
+
+
+/* =====================================================
+   FOOTER
+===================================================== */
+
+.contact-footer{
+
+    text-align:center;
+
+    padding:
+        20px
+        10px
+        10px;
+
+}
+
+
+.contact-footer p{
+
+    color:#9aaeba;
+
+    font-size:9px;
+
+}
+
+
+/* =====================================================
+   MOBILE
+===================================================== */
+
+@media(max-width:380px){
+
+    .contact-header{
+
+        height:70px;
+
+    }
+
+    .header-text h1{
+
+        font-size:17px;
+
+    }
+
+    .contact-illustration{
+
+        height:165px;
+
+    }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<main class="contact-app">
+
+
+    <!-- =================================================
+         HEADER
+    ================================================== -->
+
+    <header class="contact-header">
+
+
+        <button
+            type="button"
+            class="back-btn"
+            id="backBtn"
+            aria-label=" tenant-dashboard.html">
+
+            ‹
+
+        </button>
+
+
+        <div class="header-text">
+
+            <h1>
+                Contact Us
+            </h1>
+
+            <p>
+                JNJC Boarding House Pay
+            </p>
+
+        </div>
+
+
+    </header>
+
+
+
+    <!-- =================================================
+         CONTENT
+    ================================================== -->
+
+    <section class="contact-content">
+
+
+        <!-- ILLUSTRATION -->
+
+        <div class="contact-illustration">
+
+            <div class="sky-circle one"></div>
+
+            <div class="sky-circle two"></div>
+
+            <div class="sky-circle three"></div>
+
+
+            <div class="city">
+
+                <div class="building one"></div>
+
+                <div class="building two"></div>
+
+                <div class="building three"></div>
+
+                <div class="building four"></div>
+
+            </div>
+
+
+            <div class="house">
+
+                <div class="house-roof"></div>
+
+                <div class="house-window"></div>
+
+                <div class="house-door"></div>
+
+            </div>
+
+
+            <div class="ground"></div>
+
+        </div>
+
+
+
+        <!-- TITLE -->
+
+        <div class="contact-title">
+
+            Contact Us
+
+        </div>
+
+
+        <div class="contact-subtitle">
+
+            Get in touch with JNJC Boarding House
+
+        </div>
+
+
+
+        <!-- =================================================
+             CONTACT OPTIONS
+        ================================================== -->
+
+        <div class="contact-card">
+
+
+            <!-- FACEBOOK -->
+
+            <a
+                href="https://www.facebook.com/"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="contact-item"
+            >
+
+                <div class="contact-icon facebook">
+
+                    f
+
+                </div>
+
+
+                <div class="contact-info">
+
+                    <strong>
+                        Facebook
+                    </strong>
+
+                    <span>
+                        Visit our Facebook page
+                    </span>
+
+                </div>
+
+
+                <div class="contact-arrow">
+
+                    ›
+
+                </div>
+
+            </a>
+
+
+
+            <!-- GMAIL -->
+
+            <a
+                href="mailto:jnjcboardinghouse@gmail.com"
+                class="contact-item"
+            >
+
+                <div class="contact-icon gmail">
+
+                    ✉
+
+                </div>
+
+
+                <div class="contact-info">
+
+                    <strong>
+                        Gmail
+                    </strong>
+
+                    <span>
+                        jnjcboardinghouse@gmail.com
+                    </span>
+
+                </div>
+
+
+                <div class="contact-arrow">
+
+                    ›
+
+                </div>
+
+            </a>
+
+
+
+            <!-- INSTAGRAM -->
+
+            <a
+                href="https://www.instagram.com/"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="contact-item"
+            >
+
+                <div class="contact-icon instagram">
+
+                    ◎
+
+                </div>
+
+
+                <div class="contact-info">
+
+                    <strong>
+                        Instagram
+                    </strong>
+
+                    <span>
+                        Follow us on Instagram
+                    </span>
+
+                </div>
+
+
+                <div class="contact-arrow">
+
+                    ›
+
+                </div>
+
+            </a>
+
+
+        </div>
+
+
+
+        <!-- =================================================
+             NOTE
+        ================================================== -->
+
+        <div class="contact-note">
+
+            <p>
+                For inquiries, concerns, or additional
+                information, you may contact JNJC Boarding
+                House through the available channels above.
+            </p>
+
+        </div>
+
+
+    </section>
+
+
+
+    <!-- FOOTER -->
+
+    <footer class="contact-footer">
+
+        <p>
+            © 2026 JNJC Boarding House Pay
+        </p>
+
+    </footer>
+
+
+</main>
+
+
+
+<script>
+
+(function(){
+
+    "use strict";
+
+
+    /* =================================================
+       BACK TO TENANT DASHBOARD
+    ================================================= */
+
+    const backBtn =
+        document.getElementById("backBtn");
+
+
+    backBtn.addEventListener(
+        "click",
+        function(){
+
+            window.location.href =
+                "tenant-dashboard.html";
+
+        }
+    );
+
+
+})();
+
+</script>
+
+
+</body>
+
+</html>

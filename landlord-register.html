@@ -1,0 +1,960 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+    <title>Landlord Registration - BoardingPay</title>
+
+    <link
+        rel="stylesheet"
+        href="./style.css?v=20">
+
+    <style>
+
+        /* =========================================
+           VALIDATION MESSAGE
+        ========================================== */
+
+        .field-error {
+            display: none;
+            margin-top: 6px;
+            font-size: 13px;
+            color: #d93025;
+            font-weight: 600;
+        }
+
+        .field-error.show {
+            display: block;
+        }
+
+        .input-error {
+            border: 1.5px solid #d93025 !important;
+            outline: none;
+        }
+
+        /* =========================================
+           REGISTRATION MESSAGE
+        ========================================== */
+
+        .registration-message {
+            display: none;
+            margin-top: 12px;
+            padding: 12px;
+            border-radius: 10px;
+            font-size: 14px;
+            text-align: center;
+            font-weight: 600;
+        }
+
+        .registration-message.show {
+            display: block;
+        }
+
+        .registration-message.error {
+            background: #ffeaea;
+            color: #c62828;
+        }
+
+        /* =========================================
+           DISABLED BUTTON
+        ========================================== */
+
+        .register-submit-btn:disabled {
+            opacity: 0.65;
+            cursor: not-allowed;
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<main class="app registration-page">
+
+
+    <!-- =========================================
+         HEADER
+    ========================================== -->
+
+    <header class="registration-header">
+
+        <button
+            type="button"
+            id="landlordBackBtn"
+            class="back-btn"
+            aria-label="Back">
+
+            ‹
+
+        </button>
+
+
+        <div class="header-title">
+
+            <h1>Create Landlord Account</h1>
+
+            <p>Enter your information</p>
+
+        </div>
+
+    </header>
+
+
+
+    <!-- =========================================
+         LANDLORD REGISTRATION FORM
+    ========================================== -->
+
+    <form
+        id="landlordRegistrationForm"
+        class="registration-form">
+
+
+        <!-- =====================================
+             FULL NAME
+        ====================================== -->
+
+        <div class="form-group">
+
+            <label for="landlordName">
+                Full Name
+            </label>
+
+            <input
+                type="text"
+                id="landlordName"
+                name="fullName"
+                placeholder="Enter your full name"
+                autocomplete="name"
+                required>
+
+        </div>
+
+
+
+        <!-- =====================================
+             EMAIL
+        ====================================== -->
+
+        <div class="form-group">
+
+            <label for="landlordEmail">
+                Email Address
+            </label>
+
+            <input
+                type="email"
+                id="landlordEmail"
+                name="email"
+                placeholder="Enter your email"
+                autocomplete="email"
+                required>
+
+        </div>
+
+
+
+        <!-- =====================================
+             PASSWORD
+        ====================================== -->
+
+        <div class="form-group">
+
+            <label for="landlordPassword">
+                Password
+            </label>
+
+            <div class="password-wrapper">
+
+                <input
+                    type="password"
+                    id="landlordPassword"
+                    name="password"
+                    placeholder="Create a password"
+                    autocomplete="new-password"
+                    minlength="6"
+                    required>
+
+                <button
+                    type="button"
+                    class="password-toggle"
+                    data-target="landlordPassword"
+                    aria-label="Show password">
+
+                    👁
+
+                </button>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- =====================================
+             CONFIRM PASSWORD
+        ====================================== -->
+
+        <div class="form-group">
+
+            <label for="landlordConfirmPassword">
+                Confirm Password
+            </label>
+
+            <div class="password-wrapper">
+
+                <input
+                    type="password"
+                    id="landlordConfirmPassword"
+                    name="confirmPassword"
+                    placeholder="Confirm your password"
+                    autocomplete="new-password"
+                    minlength="6"
+                    required>
+
+                <button
+                    type="button"
+                    class="password-toggle"
+                    data-target="landlordConfirmPassword"
+                    aria-label="Show password">
+
+                    👁
+
+                </button>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- =====================================
+             ERROR MESSAGE
+        ====================================== -->
+
+        <div
+            class="registration-message error"
+            id="registrationError">
+        </div>
+
+
+
+        <!-- =====================================
+             CREATE ACCOUNT BUTTON
+        ====================================== -->
+
+        <button
+            type="submit"
+            id="landlordRegisterBtn"
+            class="register-submit-btn">
+
+            Create Account
+
+        </button>
+
+
+    </form>
+
+
+</main>
+
+
+
+<script>
+
+/* =========================================================
+   LANDLORD REGISTRATION
+   =========================================================
+
+   FLOW:
+
+   Landlord Register
+        ↓
+   Save account
+        ↓
+   login.html
+        ↓
+   Login as Landlord
+        ↓
+   landlord-dashboard.html
+
+========================================================= */
+
+
+document.addEventListener(
+    "DOMContentLoaded",
+    function () {
+
+
+        /* =====================================================
+           GET ELEMENTS
+        ===================================================== */
+
+        const form =
+            document.getElementById(
+                "landlordRegistrationForm"
+            );
+
+        const nameInput =
+            document.getElementById(
+                "landlordName"
+            );
+
+        const emailInput =
+            document.getElementById(
+                "landlordEmail"
+            );
+
+        const passwordInput =
+            document.getElementById(
+                "landlordPassword"
+            );
+
+        const confirmPasswordInput =
+            document.getElementById(
+                "landlordConfirmPassword"
+            );
+
+        const registerBtn =
+            document.getElementById(
+                "landlordRegisterBtn"
+            );
+
+        const backBtn =
+            document.getElementById(
+                "landlordBackBtn"
+            );
+
+        const registrationError =
+            document.getElementById(
+                "registrationError"
+            );
+
+
+
+        /* =====================================================
+           PASSWORD SHOW / HIDE
+        ===================================================== */
+
+        document
+            .querySelectorAll(".password-toggle")
+            .forEach(
+                function (button) {
+
+                    button.addEventListener(
+                        "click",
+                        function () {
+
+                            const targetId =
+                                button.getAttribute(
+                                    "data-target"
+                                );
+
+                            const target =
+                                document.getElementById(
+                                    targetId
+                                );
+
+
+                            if (!target) {
+                                return;
+                            }
+
+
+                            if (
+                                target.type ===
+                                "password"
+                            ) {
+
+                                target.type =
+                                    "text";
+
+                                button.textContent =
+                                    "🙈";
+
+                                button.setAttribute(
+                                    "aria-label",
+                                    "Hide password"
+                                );
+
+                            }
+
+                            else {
+
+                                target.type =
+                                    "password";
+
+                                button.textContent =
+                                    "👁";
+
+                                button.setAttribute(
+                                    "aria-label",
+                                    "Show password"
+                                );
+
+                            }
+
+                        }
+                    );
+
+                }
+            );
+
+
+
+        /* =====================================================
+           PASSWORD MATCH VALIDATION
+        ===================================================== */
+
+        function validatePasswordMatch() {
+
+            const password =
+                passwordInput.value;
+
+            const confirmPassword =
+                confirmPasswordInput.value;
+
+
+            if (
+                confirmPassword !== "" &&
+                password !== confirmPassword
+            ) {
+
+                confirmPasswordInput.setCustomValidity(
+                    "Passwords do not match."
+                );
+
+                return false;
+
+            }
+
+
+            confirmPasswordInput.setCustomValidity("");
+
+            return true;
+
+        }
+
+
+
+        /* =====================================================
+           PASSWORD INPUT EVENTS
+        ===================================================== */
+
+        passwordInput.addEventListener(
+            "input",
+            function () {
+
+                confirmPasswordInput.setCustomValidity("");
+
+            }
+        );
+
+
+        confirmPasswordInput.addEventListener(
+            "input",
+            function () {
+
+                validatePasswordMatch();
+
+            }
+        );
+
+
+
+        /* =====================================================
+           FORM SUBMIT
+        ===================================================== */
+
+        form.addEventListener(
+            "submit",
+            function (event) {
+
+                event.preventDefault();
+
+
+                /* =============================================
+                   CLEAR ERROR
+                ============================================= */
+
+                registrationError.textContent = "";
+
+                registrationError.classList.remove(
+                    "show"
+                );
+
+
+
+                /* =============================================
+                   CHECK FORM
+                ============================================= */
+
+                if (!form.checkValidity()) {
+
+                    form.reportValidity();
+
+                    return;
+
+                }
+
+
+
+                /* =============================================
+                   CHECK PASSWORD MATCH
+                ============================================= */
+
+                if (!validatePasswordMatch()) {
+
+                    confirmPasswordInput.reportValidity();
+
+                    confirmPasswordInput.focus();
+
+                    return;
+
+                }
+
+
+
+                /* =============================================
+                   GET USER DATA
+                ============================================= */
+
+                const fullName =
+                    nameInput.value.trim();
+
+                const email =
+                    emailInput.value
+                        .trim()
+                        .toLowerCase();
+
+                const password =
+                    passwordInput.value;
+
+
+
+                /* =============================================
+                   GET EXISTING ACCOUNTS
+                ============================================= */
+
+                let accounts = [];
+
+                try {
+
+                    accounts =
+                        JSON.parse(
+                            localStorage.getItem(
+                                "boardingPayAccounts"
+                            ) || "[]"
+                        );
+
+
+                    if (
+                        !Array.isArray(accounts)
+                    ) {
+
+                        accounts = [];
+
+                    }
+
+                }
+
+                catch (error) {
+
+                    accounts = [];
+
+                }
+
+
+
+                /* =============================================
+                   CHECK DUPLICATE EMAIL
+                ============================================= */
+
+                const emailExists =
+                    accounts.some(
+                        function (account) {
+
+                            const existingEmail =
+                                String(
+                                    account.email ||
+                                    account.identifier ||
+                                    ""
+                                )
+                                .trim()
+                                .toLowerCase();
+
+
+                            return (
+                                existingEmail ===
+                                email
+                            );
+
+                        }
+                    );
+
+
+                if (emailExists) {
+
+                    registrationError.textContent =
+                        "This email is already registered.";
+
+                    registrationError.classList.add(
+                        "show"
+                    );
+
+                    emailInput.focus();
+
+                    return;
+
+                }
+
+
+
+                /* =============================================
+                   CREATE LANDLORD ACCOUNT
+                ============================================= */
+
+                const landlordData = {
+
+                    id:
+                        "LANDLORD-" +
+                        Date.now(),
+
+                    fullName:
+                        fullName,
+
+                    email:
+                        email,
+
+                    identifier:
+                        email,
+
+                    password:
+                        password,
+
+                    role:
+                        "landlord",
+
+                    accountType:
+                        "Landlord",
+
+                    createdAt:
+                        new Date().toISOString()
+
+                };
+
+
+
+                /* =============================================
+                   SAVE TO COMMON ACCOUNTS
+                ============================================= */
+
+                accounts.push(
+                    landlordData
+                );
+
+
+                localStorage.setItem(
+                    "boardingPayAccounts",
+                    JSON.stringify(accounts)
+                );
+
+
+
+                /* =============================================
+                   SAVE CURRENT LANDLORD
+                   FOR LANDLORD DASHBOARD
+                ============================================= */
+
+                localStorage.setItem(
+                    "currentLandlord",
+                    JSON.stringify(landlordData)
+                );
+
+
+
+                /* =============================================
+                   SAVE LANDLORD LIST
+                ============================================= */
+
+                let landlords = [];
+
+                try {
+
+                    landlords =
+                        JSON.parse(
+                            localStorage.getItem(
+                                "boardingPay_landlords"
+                            ) || "[]"
+                        );
+
+
+                    if (
+                        !Array.isArray(
+                            landlords
+                        )
+                    ) {
+
+                        landlords = [];
+
+                    }
+
+                }
+
+                catch (error) {
+
+                    landlords = [];
+
+                }
+
+
+                landlords.push({
+
+                    id:
+                        landlordData.id,
+
+                    name:
+                        landlordData.fullName,
+
+                    fullName:
+                        landlordData.fullName,
+
+                    email:
+                        landlordData.email,
+
+                    accountType:
+                        "Landlord",
+
+                    role:
+                        "landlord",
+
+                    createdAt:
+                        landlordData.createdAt
+
+                });
+
+
+                localStorage.setItem(
+                    "boardingPay_landlords",
+                    JSON.stringify(landlords)
+                );
+
+
+
+                /* =============================================
+                   ADMIN NOTIFICATION
+                ============================================= */
+
+                let notifications = [];
+
+                try {
+
+                    notifications =
+                        JSON.parse(
+                            localStorage.getItem(
+                                "adminNotifications"
+                            ) || "[]"
+                        );
+
+
+                    if (
+                        !Array.isArray(
+                            notifications
+                        )
+                    ) {
+
+                        notifications = [];
+
+                    }
+
+                }
+
+                catch (error) {
+
+                    notifications = [];
+
+                }
+
+
+                notifications.unshift({
+
+                    id:
+                        "NOTIF-" +
+                        Date.now(),
+
+                    title:
+                        "New Landlord Registration",
+
+                    message:
+                        landlordData.fullName +
+                        " created a new landlord account.",
+
+                    icon:
+                        "🏠",
+
+                    time:
+                        new Date().toLocaleString(),
+
+                    read:
+                        false
+
+                });
+
+
+                localStorage.setItem(
+                    "adminNotifications",
+                    JSON.stringify(notifications)
+                );
+
+
+
+                /* =============================================
+                   ADMIN ACTIVITY
+                ============================================= */
+
+                let activities = [];
+
+                try {
+
+                    activities =
+                        JSON.parse(
+                            localStorage.getItem(
+                                "boardingPay_activities"
+                            ) || "[]"
+                        );
+
+
+                    if (
+                        !Array.isArray(
+                            activities
+                        )
+                    ) {
+
+                        activities = [];
+
+                    }
+
+                }
+
+                catch (error) {
+
+                    activities = [];
+
+                }
+
+
+                activities.unshift({
+
+                    id:
+                        "ACT-" +
+                        Date.now(),
+
+                    title:
+                        "New Landlord Account",
+
+                    message:
+                        landlordData.fullName +
+                        " registered as a landlord.",
+
+                    icon:
+                        "🏠",
+
+                    date:
+                        new Date().toLocaleString()
+
+                });
+
+
+                localStorage.setItem(
+                    "boardingPay_activities",
+                    JSON.stringify(activities)
+                );
+
+
+
+                /* =============================================
+                   SAVE LOGIN PREFILL
+                   PARA PAGDATING SA LOGIN PAGE,
+                   ALREADY SELECTED ANG LANDLORD
+                ============================================= */
+
+                localStorage.setItem(
+                    "pendingLoginRole",
+                    "landlord"
+                );
+
+                localStorage.setItem(
+                    "pendingLoginIdentifier",
+                    email
+                );
+
+
+
+                /* =============================================
+                   BUTTON STATE
+                ============================================= */
+
+                registerBtn.disabled = true;
+
+                registerBtn.textContent =
+                    "Account Created!";
+
+
+
+                /* =============================================
+                   GO TO LOGIN PAGE
+                ============================================= */
+
+                setTimeout(
+                    function () {
+
+                        window.location.href =
+                            "login.html";
+
+                    },
+                    500
+                );
+
+            }
+        );
+
+
+
+        /* =====================================================
+           BACK BUTTON
+           DIRECT TO LOGIN.HTML
+        ===================================================== */
+
+        if (backBtn) {
+
+            backBtn.addEventListener(
+                "click",
+                function () {
+
+                    window.location.href =
+                        "login.html";
+
+                }
+            );
+
+        }
+
+
+    }
+);
+
+</script>
+
+
+</body>
+
+</html>

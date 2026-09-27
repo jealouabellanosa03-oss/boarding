@@ -1525,6 +1525,43 @@
 </main>
 
 
+<!-- =====================================================
+     BOARDINGPAY JAVASCRIPT
+===================================================== -->
+<script src="./script.js"></script>
+
+<!-- =====================================================
+     BOARDINGPAY SERVICE WORKER
+===================================================== -->
+<script>
+(function () {
+    "use strict";
+
+    if (!("serviceWorker" in navigator)) {
+        console.warn("Service Workers are not supported in this browser.");
+        return;
+    }
+
+    window.addEventListener("load", function () {
+        navigator.serviceWorker.register("./sw.js", {
+            scope: "./"
+        })
+        .then(function (registration) {
+            console.log(
+                "BoardingPay Service Worker registered:",
+                registration.scope
+            );
+        })
+        .catch(function (error) {
+            console.error(
+                "BoardingPay Service Worker registration failed:",
+                error
+            );
+        });
+    });
+})();
+</script>
+
 </body>
 
 </html>
